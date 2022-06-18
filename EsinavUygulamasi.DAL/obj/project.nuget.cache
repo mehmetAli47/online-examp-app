@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tPXKEDklEN2ZM1zcr9vecImWnmjuRt7RrGpyQB5yRxNaHxGGjj2Bwm0ZvsXfv8a4O+1gnCN7JRvRwUu+IgT7ag==",
+  "dgSpecHash": "t/mWih/PKD+TOqcFcUI/PiAWlm1p+O0xXLsrXUlFV9/tQ5K4IivpXtg+PGW6c8LZ0GC2BWEXl/ZgiSKntJtKoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
+  "projectFilePath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mehme\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\mehme\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",

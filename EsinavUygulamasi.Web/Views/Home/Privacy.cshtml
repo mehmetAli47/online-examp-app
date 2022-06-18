@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="container text-center float-left">
+    <div class="time" name="" id="00:00:02"></div>
+    <h2 id="timecountdown"></h2>
+</div>
+<script>
+    $(document).ready(function(){
+          var timer2 = $(".time").attr("id");
+          var interval = setInterval(function() {
+          var timer = timer2.split(':');
+          var hours = parseInt(timer[0], 0);
+          var minutes = parseInt(timer[1], 0);
+          var seconds = parseInt(timer[2], 0);
+          --seconds;
+          
+          minutes=(seconds<0)? --minutes:minutes;
+          hours=(minutes<0)? --hours:hours;
+          minutes=(minutes<0)? 59:minutes;
+          seconds=(seconds<0)? 59:seconds;
+
+           if(hours<0){
+               clearInterval(interval);
+              return;
+          }
+          hours=(hours<10)? '0'+hours:hours;
+          minutes=(minutes< 10)? '0'+minutes:minutes;
+          seconds=(seconds<10)? '0'+seconds:seconds;
+         
+          $('#timecountdown').html(hours+':'+minutes + ':' + seconds);
+          timer2 =hours+':'+minutes + ':' + seconds;
+        }, 1000);
+    });
+
+</script>

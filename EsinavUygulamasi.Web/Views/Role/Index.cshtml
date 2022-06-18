@@ -1,0 +1,15 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.Role>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index Role</h1>
+@foreach (var item in Model)
+{
+    @item.Id
+    @item.Name
+    
+
+}
+

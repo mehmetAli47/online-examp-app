@@ -1,0 +1,67 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.Institution>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Student/Views/Shared/_StudentLayout.cshtml";
+}
+
+<body>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1> Online sınavlarımıza hoşgeldiniz </h1>
+        <p>Seçmek istediğiniz Kuruma tıklayarak  istediğiniz sınavları deneyebilirsiniz</p>
+    </div>
+    <div style="margin-bottom:0">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        </nav>
+    </div>
+    <sectin class="main-content-w3layouts-agileits">
+        <div class="container">
+            <h3 class="tittle">Kurumlar</h3>
+            <div class="inner-sec">
+                <!--left-->
+                <div class="left-blog-info-w3layouts-agileits text-left">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 card">
+                                <a href="/Student/Exam/Index/@item.Id" data - id="@item.Id">
+                                    <img src="~/web/images/1.jpg" class="card-img-top img-fluid" alt="">
+                                </a>
+                                <div class="card-body">
+                                    <ul class="blog-icons my-4">
+                                        <li>
+                                            <a href="#">
+                                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateTime).ToString("dd-MMM-yyyy"))
+                                            </a>
+                                        </li>
+                                        <li class="mx-2">
+                                            <a href="#">
+                                                <i class="far fa-comment"></i> 0
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Student/Exam/Index/@item.Id" data - id="@item.Id">
+                                                <i class="fas fa-eye"></i> @item.Name
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <h5 class="card-title">
+                                        <a href="/Student/Exam/Index/@item.Id" data - id="@item.Id">@item.Name</a>
+                                    </h5>
+                                    <p class="card-text mb-3">@(item.InstitutionInformation.Length>130?item.InstitutionInformation.Substring(0,130):item.InstitutionInformation)...</p>
+                                    @*<a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>*@
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+
+                        }
+                    </div>
+                    <!--//left-->
+                </div>
+            </div>
+        </div>
+    </sectin>
+
+</body>
+

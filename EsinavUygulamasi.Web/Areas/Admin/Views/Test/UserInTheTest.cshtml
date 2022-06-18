@@ -1,0 +1,28 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.UserInTheTest>
+@{
+    ViewData["Title"] = "UserInTheTest";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<div class="container p-3 text-center">
+    <h2>Kullanıcıların Testlere Dağılım listesi</h2>
+    <table class="table table-striped table-hover p-4" style="margin-top:30px;">
+        <thead class="thead-light">
+            <tr>
+                <th> test id</th>
+                <th> test Name</th>
+                <th> Teste giren Kullanıcı sayısı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="background-color:beige;">@item.Id</td>
+                    <td style="background-color:beige; text-align:start"><a class="btn" href="/Admin/Test/UserTestInformation/@item.Id" data-id="@item.Id">@item.TestName</a></td>
+                    <td style="background-color:beige;">@item.NumberOfUser</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

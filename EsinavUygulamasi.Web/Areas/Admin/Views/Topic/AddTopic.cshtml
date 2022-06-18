@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "AddTopic";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+<div class="container ">
+    <div class="text-center m-3" style="background-color:aliceblue">
+        <h2>Yeni Kurum Ekleme</h2>
+    </div>
+    <div class="row m-3">
+        <div class="col ">
+            <form asp-action="InstitutionAdd" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label  class="control-label">Konu Başlığı</label>
+                    <input name="Name" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Kurum Ekle" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col">
+        <a href="/Admin/Topic/Index" class="btn btn-group-sm">Back to List</a>
+    </div>
+
+</div>
+

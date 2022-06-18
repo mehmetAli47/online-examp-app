@@ -1,0 +1,50 @@
+﻿@model List<EsinavUygulamasi.Models.Response.QuestionVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Student/Views/Shared/_StudentLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/style/Question.css">
+</head>
+<body>
+    <section class="">
+        <div class="container">
+            <div class="gridHeader"><h3>@ViewBag.TopicName Soru Listesi</h3> </div>
+            <br />
+            <div class="question">
+                @foreach (var item in Model)
+                {
+                    <div class="questionName row">
+                        <div class="name col-md-12 p-3 " style="background-color:burlywood">
+                            <label for="validationCustom01">@item.Name</label>
+                        </div>
+                    </div>
+                    <div class="questionAnswer row">
+                        <div class="col-md-12 p-3 ">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer1">
+                            <label for="@item.Answer1">@item.Answer1</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer2">
+                            <label for="@item.Answer2">@item.Answer2</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer3">
+                            <label for="@item.Answer3">@item.Answer3</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer4">
+                            <label for="@item.Answer4">@item.Answer4</label>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+                }
+            </div>
+
+        </div>
+    </section>
+</body>
+

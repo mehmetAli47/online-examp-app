@@ -1,0 +1,39 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.Institution>
+
+@{
+    ViewData["Title"] = "AddExam";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<
+<div class="container p-3">
+    <div class="row">
+        <div class="col">
+            <form asp-action="AddExam" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label  class="control-label">Sınav Adı</label>
+                    <input id="Name" name="Name" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group ">
+                    <select name="InstitutionId" id="InstitutionId" style="border-radius:5px;padding:2px;">
+                        <option  >Kurum Seçin</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="btnSbmit" value="Ekle" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>

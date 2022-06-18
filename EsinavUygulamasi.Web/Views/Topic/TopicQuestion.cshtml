@@ -1,0 +1,65 @@
+﻿@model List<EsinavUygulamasi.Models.Response.QuestionVM>
+@{
+    ViewData["Title"] = "TopicQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="~/style/Question.css">
+</head>
+<body>
+    <section class="">
+        <div class="container">
+
+            <div class="gridHeader"><h3>@ViewBag.TopicName Örnek  Soru Listesi</h3> </div>
+            <br />
+            <div class="question">
+                @foreach (var item in Model)
+                {
+                    <div class="questionName row">
+                        <div class="name col-md-12 p-3 " style="background-color:burlywood">
+                            <label for="validationCustom01">@item.Name</label>
+                        </div>
+                    </div>
+                    <div class="questionAnswer row">
+                        <div class="col-md-12 p-3 ">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer1" disabled>
+                            <label for="@item.Answer1">@item.Answer1</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer2"disabled>
+                            <label for="@item.Answer2">@item.Answer2</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer3"disabled>
+                            <label for="@item.Answer3">@item.Answer3</label>
+                        </div>
+                        <div class="col-md-12 p-3">
+                            <input class="custom-radio" name="@item.Name" type="radio" id="@item.Answer4"disabled>
+                            <label for="@item.Answer4">@item.Answer4</label>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+                }
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+﻿@model EsinavUygulamasi.Models.Response.TestVM
+
+@{
+    ViewData["Title"] = "DeleteTest";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+
+<div class="container p-5">
+    <h1>Bu sınavı Silmek İstediğinizden Eminmisiniz?</h1>
+    <dl class="row p-3">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfQuestion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfQuestion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastUpdateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastUpdateTime)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteTest" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Testi Sil" class="btn btn-danger" /> |
+        <a href="/Admin/Test/Index">Listeye geri dön</a>
+    </form>
+</div>

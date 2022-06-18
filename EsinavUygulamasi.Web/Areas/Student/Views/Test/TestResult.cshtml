@@ -1,0 +1,67 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.UserTest>
+@{
+    ViewData["Title"] = "TestResult";
+    Layout = "~/Areas/Student/Views/Shared/_StudentLayout.cshtml";
+}
+
+<style>
+    .retunTest {
+        text-align: center;
+    }
+    .answer{
+        border-radius:30px;
+        padding-top:15px;
+    }
+</style>
+<body>
+    <section class="">
+        <div class="container p-5">
+            <form class="Test" method="post">
+                <div class="questionlist">
+                    @foreach (var item in Model)
+                    {
+                        <input class="questionListById" type="hidden" value="@item.Id" />
+                        <div class="question">
+                            <div class="name row">
+                                <div class="name col-md-12 p-3 " style="background-color:burlywood">
+                                    <label name="questionName" id="questionName">@item.Question.Name</label>
+                                </div>
+                            </div>
+                            <div class="answer row">
+                                <div class="answer col-md-12 p-3 " style="@(item.Question.Answer1==item.QuestionAnswer||item.Question.Answer1==item.Question.CorrectAnswer?(item.Question.Answer1==item.Question.CorrectAnswer?"background:#3fff00bd":"background:#f70000bf"):"")">
+                                    <input class="custom-radio" name="@item.Question.Id" type="radio" id="@item.Question.Answer1" value="@item.Question.Answer1" @(item.QuestionAnswer==item.Question.Answer1?"checked":"disabled")>
+                                    <label for="@item.Question.Answer1">@item.Question.Answer1</label>
+                                </div>
+                                <div class="answer col-md-12 p-3" style="@(item.Question.Answer2==item.QuestionAnswer||item.Question.Answer2==item.Question.CorrectAnswer?(item.Question.Answer2==item.Question.CorrectAnswer?"background:#3fff00bd":"background:#f70000bf"):"")">
+                                    <input class="custom-radio" name="@item.Question.Id" type="radio" id="@item.Question.Answer2" value="@item.Question.Answer2" @(item.QuestionAnswer==item.Question.Answer2?"checked":"disabled")>
+                                    <label for="@item.Question.Answer2">@item.Question.Answer2</label>
+                                </div>
+                                <div class="answer col-md-12 p-3" style="@(item.Question.Answer3==item.QuestionAnswer||item.Question.Answer3==item.Question.CorrectAnswer?(item.Question.Answer3==item.Question.CorrectAnswer?"background:#3fff00bd":"background:#f70000bf"):"")">
+                                    <input class="custom-radio" name="@item.Question.Id" type="radio" id="@item.Question.Answer3" value="@item.Question.Answer3" @(item.QuestionAnswer==item.Question.Answer3?"checked":"disabled")>
+                                    <label for="@item.Question.Answer3">@item.Question.Answer3</label>
+                                </div>
+                                <div class="answer col-md-12 p-3" style="@(item.Question.Answer4==item.QuestionAnswer||item.Question.Answer4==item.Question.CorrectAnswer?(item.Question.Answer4==item.Question.CorrectAnswer?"background:#3fff00bd":"background:#f70000bf"):"")">
+                                    <input class="custom-radio" name="@item.Question.Id" type="radio" id="@item.Question.Answer4" value="@item.Question.Answer4" @(item.QuestionAnswer==item.Question.Answer4?"checked":"disabled")>
+                                    <label for="@item.Question.Answer4">@item.Question.Answer4</label>
+                                </div>
+                                <div class="col-md-12 p-3">
+                                    <input class="status" name="status" type="hidden" id="status" value="@item.Status" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </form>
+            <div class="retunTest">
+                <a href="/Student/Test/Index/@ViewBag.ExamId" class="btn btn-primary">Test Listesine Geri Dön</a>
+            </div>
+
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function(){
+
+
+    });
+</script>

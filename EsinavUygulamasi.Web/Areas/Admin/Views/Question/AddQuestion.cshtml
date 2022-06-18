@@ -1,0 +1,92 @@
+﻿@model EsinavUygulamasi.DAL.Models.Database.Topic
+@{
+    ViewData["Title"] = "AddQuestion";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div class="container ">
+    <div class="text-center m-3" style="background-color:aliceblue">
+        <h2>@ViewBag.TopicName Konusu için Yeni Soru Ekleme</h2>
+    </div>
+    <div class="row m-3">
+        <div class="col ">
+            <form asp-action="AddQuestion" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label  class="control-label">Soru Başlığı</label>
+                    <input name="Name" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">A</label>
+                    <input name="Answer1" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">B</label>
+                    <input name="Answer2" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">C</label>
+                    <input name="Answer3" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">D</label>
+                    <input name="Answer4" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">Doğru cevap (Cevabın kendisini yazın!!)</label>
+                    <input name="CorrectAnswer" class="form-control" />
+                    <span  class="text-danger"></span>
+                </div>
+                   <input type="hidden" name="TopicId" id="TopicId" value="@ViewBag.topicId" />
+                <div class="form-group">
+                     <input style=" width: 150px; " id="btnSbmit" type="submit" value="Ekle" class="btn btn-primary" />
+                    <a href="/Admin/Question/Index/@ViewBag.topicId" class="btn btn-group-sm">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*<script>
+    $(document).ready(function () {
+        $('#btnAdd').click(function () {
+
+            var selectedTopicId = $('#questionTopic option:selected').val();
+            var selectedTopicName = $('#questionTopic option:selected').text();
+            if (selectedTopicId != "") {
+                var options = $("#TopicIdList option");
+                var found = false;
+                for (var i = 0; i < options.length; i++) {
+                    if ($(options).eq(i).val() == selectedTopicId) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    $("#TopicIdList").append(new Option(selectedTopicName, selectedTopicId));
+                else
+                    alert("Bu kategori zaten eklidir");
+
+            }
+
+        });
+
+        $('#btnRemove').click(function () {
+            $('#TopicIdList option:selected').remove();
+        });
+
+        $('#btnSbmit').click(function () {
+            $('#TopicIdList option').prop('selected', true);
+        });
+    });
+</script>*@
+
+
+
+

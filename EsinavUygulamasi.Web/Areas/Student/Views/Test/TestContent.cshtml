@@ -1,0 +1,162 @@
+﻿@model List<EsinavUygulamasi.Models.Response.QuestionVM>
+@{
+    ViewData["Title"] = "Test";
+    Layout = "~/Areas/Student/Views/Shared/_StudentLayout.cshtml";
+}
+<head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    .time {
+        margin-left: -257px;
+        height: 0px;
+        width: 225px;
+        position: fixed;
+        margin-top: -40px;
+    }
+
+    .Test {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .container {
+        display: contents;
+    }
+</style>
+<body>
+    <section class="">
+
+        <div class="container">
+            <form class="Test p-4" method="post">
+                <div class="time p-5" name="" id="00:30:00" style="margin-left:90px;height: 130px;">
+                    <h2 id="timecountdown"></h2>
+                </div>
+                <div class="questionlist" style="width: 55%;margin-left: 450px;">
+                    @foreach (var item in Model)
+                    {
+                        <input class="questionListById" type="hidden" value="@item.Id" />
+                        <div class="question">
+                            <div class="name row">
+                                <div class="name col-md-12 p-3 " style="background-color:burlywood">
+                                    <label for="validationCustom01">@item.Name</label>
+                                </div>
+                            </div>
+                            <div class="answer row">
+
+                                <div class="col-md-12 p-3 ">
+                                    <input class="custom-radio" name="@item.Id" type="radio" id="@item.Answer1" value="@item.Answer1">
+                                    <label for="@item.Answer1">@item.Answer1</label>
+                                </div>
+                                <div class="col-md-12 p-3">
+                                    <input class="custom-radio" name="@item.Id" type="radio" id="@item.Answer2" value="@item.Answer2">
+                                    <label for="@item.Answer2">@item.Answer2</label>
+                                </div>
+                                <div class="col-md-12 p-3">
+                                    <input class="custom-radio" name="@item.Id" type="radio" id="@item.Answer3" value="@item.Answer3">
+                                    <label for="@item.Answer3">@item.Answer3</label>
+                                </div>
+                                <div class="col-md-12 p-3">
+                                    <input class="custom-radio" name="@item.Id" type="radio" id="@item.Answer4" value="@item.Answer4">
+                                    <label for="@item.Answer4">@item.Answer4</label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="veriler"></div>
+                <input name="TestId" id="TestId" type="hidden" value="@ViewBag.TestId" />
+                <input name="ExamId" id="ExamId" type="hidden" value="@ViewBag.ExamId" />
+            </form>
+            <div class="text-center">
+                @*Jquery ile yönlendirme işlemi uygulanacasa yönlendirme için kullanılacak input tagın type submit DEĞİL button kullanılmasıl gerekir*@
+                <input style=" width: 150px;" id="btnSbmit" type="button" value="Testi Tamamla" class="btn btn-primary" />
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    $(document).ready(function(){
+        var testResultObj=new Object();
+             testResultObj.TestId=$("#TestId").val();
+             testResultObj.ExamId=$("#ExamId").val();
+          var timer2 = $(".time").attr("id");
+          var interval = setInterval(function() {
+          var timer = timer2.split(':');
+          var hours = parseInt(timer[0], 0);
+          var minutes = parseInt(timer[1], 0);
+          var seconds = parseInt(timer[2], 0);
+          --seconds;
+          minutes=(seconds<0)? --minutes:minutes;
+          hours=(minutes<0)? --hours:hours;
+          minutes=(minutes<0)? 59:minutes;
+          seconds=(seconds<0)? 59:seconds;
+            if(hours<0){
+                testResultObj.QuestionAnswerList=[];
+                var questions=$(".custom-radio:checked");
+                for(var i=0;i<$(questions).length;i++){
+                    var question=$(questions).eq(i);
+                    var answer=new Object();
+                    answer.QuestionId=$(question).attr("name");
+                    answer.QuestionAnswer=$(question).val();
+                    testResultObj.QuestionAnswerList.push(answer);
+                        }
+                 clearInterval(interval);
+                $.ajax({
+                   url:"/Student/Test/TestContent",
+                   data:JSON.stringify(testResultObj),
+                   contentType:"application/json; charset=utf-8",
+                   type:"post",
+                   success:function(data){
+                       if(data.IsSuccess==true){
+                           Swal.fire({
+                                  title: 'Sınav Süreniz Bitmiştir.Sınavınız Sonlandırılacaktır!!',
+                                  allowOutsideClick: false
+                            }).then((result) => {
+                                  window.location.href="/Student/Test/TestResult/"+testResultObj.TestId;
+                            })
+                            }
+                       else{}                  
+                        }
+                            });
+                }
+          hours=(hours<10)? '0'+hours:hours;
+          minutes=(minutes< 10)? '0'+minutes:minutes;
+          seconds=(seconds<10)? '0'+seconds:seconds;
+
+          $('#timecountdown').html(hours+':'+minutes + ':' + seconds);
+          timer2 =hours+':'+minutes + ':' + seconds;
+        }, 1000);
+
+        $("#btnSbmit").click(function (){
+
+            testResultObj.QuestionAnswerList=[];
+            var questions=$(".custom-radio:checked");
+            for(var i=0;i<$(questions).length;i++){
+                var question=$(questions).eq(i);
+                var answer=new Object();
+                answer.QuestionId=$(question).attr("name");
+                answer.QuestionAnswer=$(question).val();
+                testResultObj.QuestionAnswerList.push(answer);
+            }
+
+
+           $.ajax({
+               url:"/Student/Test/TestContent",
+               data:JSON.stringify(testResultObj),
+               contentType: "application/json; charset=utf-8",
+               type:"post",
+               success:function(data){
+                   if(data.IsSuccess==true){
+                        window.location.href="/Student/Test/TestResult/"+testResultObj.TestId;
+                   }
+                   else{
+                       //haata
+                   }
+
+                  }
+           });
+          });
+    });
+</script>

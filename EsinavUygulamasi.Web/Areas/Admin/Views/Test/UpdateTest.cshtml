@@ -1,0 +1,210 @@
+﻿@model EsinavUygulamasi.Models.Response.TestVM
+@{
+    ViewData["Title"] = "UpdateTest";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<style>
+    
+    .soru {
+        background-color: azure;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+
+    #btnRemove {
+        width: 100%;
+        margin-left: 12px;
+        border-radius: 10px;
+    }
+
+    #btnSbmit {
+        border-radius: 10px;
+    }
+
+    #Submit {
+        border-radius: 10px;
+    }
+
+</style>
+
+<body>
+    <div class="container p-5">
+        <form class="UpdateTest" method="post">
+            <div class="form-group">
+                <input type="hidden" name="testId" id="testId" value="@ViewBag.TestId" />
+                <label>Testin Adı</label>
+                <input name="name" id="name" type="text" class="form-control" value="@Model.Name" />
+            </div>
+            <div class="form-group">
+                <label>Testin  Başlama Tarihi</label>
+                <input name="startTime" id="startTime" type="datetime-local" class="form-control" value='@Model.StartTime.ToString("yyyy-MM-dd HH:mm:ss")?.Replace(' ','T')' />
+            </div>
+            <div class="form-group">
+                <label>Soru Konusu</label>
+                <select id="selectTopicListType" name="selectTopicListType" class="form-control custom-select">
+                    <option selected value="">seçiniz</option>
+                    @foreach (SelectListItem item in ViewBag.Topic)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="row" style="margin-left:1px;">
+                <div class="col-10">
+                    <div class="form-group row">
+                        <label class="control-label">Sorular</label>
+                        <select id="selectQuestionListById" name="selectQuestionListById" class="form-control custom-select" style="border-radius:5px;padding:2px;">
+                            <option selected value="">seçiniz</option>
+                            @foreach (SelectListItem question in ViewBag.Question)
+                            {
+                                <option data-id="@question.Value" value="@question.Value">@question.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input style=" width: 150px; " id="btnSbmit" type="button" value="Ekle" class="btn btn-primary" />
+                    <input style=" width: 150px; margin-top:20px; " id="Submit" type="button" value="Güncelle" class="btn btn-success" />
+                </div>
+            </div>
+                <div class="questionIdList">
+                    
+                </div>
+        </form>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        var testId=$("#testId").val();
+        GetTestQuestion(testId);  
+
+          $("#selectTopicListType").change(function(){
+              var selected=$("#selectTopicListType").val();
+              GetQuestionListByTopicId(selected);
+            
+
+          });
+          $(".questionIdList").on("click","#btnRemove",function(){
+              var parent=$(this).parents(".soru");
+              $(parent).remove();
+          });
+          $("#btnSbmit").click(function(){
+              var selectedQuestion=$("#selectQuestionListById").find(":selected");
+              var text=$(selectedQuestion).text();
+              var qId=$(selectedQuestion).val();
+              //gelen içeriğinin okunması işlemi
+                    var answer1=$(selectedQuestion).attr("data-answer1");
+                    var answer2=$(selectedQuestion).attr("data-answer2");
+                    var answer3=$(selectedQuestion).attr("data-answer3");
+                    var answer4=$(selectedQuestion).attr("data-answer4");
+                    var questionText=$(".questionIdList .soru");
+                    if(questionText!=undefined){
+
+                        var found=false;
+                        for(var i=0;i<questionText.length;i++){
+                            if($(questionText).eq(i).attr("data-id")==qId){
+                                found=true;
+                                 break;
+                            }
+                        }
+                        if(!found){
+                            $('.questionIdList').append(
+                           '<div class="soru row"  data-id="'+qId+'">'
+                                +'<div class="col-10">'
+                                 +text+'</br></br>'
+                                 +'<div>A-)'+answer1+'</div>'
+                                    +'<div>B-)'+answer2+'</div>'
+                                    +'<div>C-)'+answer3+'</div>'
+                                    +'<div>D-)'+answer4+'</div>'
+                                +'</div>'
+                                +'<div class="col-2">'
+                                  +'<button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i></button>'
+                                +'</div>'
+                            +'</div>');
+                        }
+                        else
+                            alert("bu soru zaten ekli");
+                    }else{
+                    $('.questionIdList').append(
+                           '<div class="soru" data-id="'+qId+'">'
+                               +'<button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i></button>'
+                                +'<div>A-)'+answer1+'</div>'
+                                +'<div>B-)'+answer2+'</div>'
+                                +'<div>C-)'+answer3+'</div>'
+                                +'<div>D-)'+answer4+'</div>'
+                            +'</div>');
+                       }
+          });
+          $("#Submit").click(function(){
+              var questions=$(".questionIdList .soru");
+              var testId=$("#testId").val();
+              var testName=$("#name").val();
+              var startTime=$("#startTime").val();
+              var testObj=new Object();
+              const questionIdList=[];
+              for(var i=0;i<questions.length;i++){
+                      questionIdList.push(parseInt($(questions).eq(i).attr("data-id")));
+              }
+              testObj.QuestionIdList=questionIdList;
+              testObj.Name=testName;
+              testObj.StartTime=startTime;
+              testObj.Id=testId;
+              testObj.NumberOfQuestion=questionIdList.length;
+              $.ajax({
+                  url:'/Admin/Test/UpdateTest',
+                  data:JSON.stringify(testObj),
+                  contentType: "application/json; charset=utf-8",
+                  type:'post',
+                  success:function(testObj){
+                      window.location.href="/Admin/Test/Index";
+                  }
+              });
+
+          });
+
+
+    });
+    function GetTestQuestion(testListTypeId){
+        $.ajax({
+            url:'/Admin/Test/GetQuestionListByTestId',
+            data:{testListTypeId:testListTypeId},
+            type:'post',
+            success:function(data){
+                for(var i=0;i<data.QuestionVM.length;i++){
+                    $(".questionIdList").append("<div class='soru row' data-id='"+data.QuestionVM[i].Id+"'>"
+                                                +"<div class='col-10'>"
+                                                    +"<div>"+data.QuestionVM[i].Name+"</div>"
+                                                    +"<div>A-)"+data.QuestionVM[i].Answer1+"</div>"
+                                                    +"<div>B-)"+data.QuestionVM[i].Answer2+"</div>"
+                                                    +"<div>C-)"+data.QuestionVM[i].Answer3+"</div>"
+                                                    +"<div>D-)"+data.QuestionVM[i].Answer4+"</div>"
+                                                +"</div>"
+                                                +"<div class='col-2'>"
+                                                    +'<button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i></button>'
+                                                +"</div>"
+                                                +"</div>"
+                    
+                    
+                    
+                    
+                    
+                                              );
+                }
+            }
+        });
+    }
+    function GetQuestionListByTopicId(topicListTypeId){
+        $.ajax({
+                url:'/Admin/Test/GetQuestion',
+                data:{topicListTypeId:topicListTypeId},
+                type:'post',
+                success:function(data){
+                    $('#selectQuestionListById').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#selectQuestionListById').append("<option value='" + data[i].Id + "' data-answer1='"+data[i].Answer1+"' data-answer2='"+data[i].Answer2+"' data-answer3='"+data[i].Answer3+"' data-answer4='"+data[i].Answer4+"'>" + data[i].Name + "</option>");
+                    }
+                }
+            });
+    }
+</script>

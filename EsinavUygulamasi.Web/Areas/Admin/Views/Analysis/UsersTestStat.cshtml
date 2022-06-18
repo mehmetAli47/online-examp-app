@@ -1,0 +1,34 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.UsersTestStatV>
+@{
+    ViewData["Title"] = "GetUsersTestStat";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+<div class="container">
+    <table class="table tabletable-striped">
+        <thead>
+            <tr>
+                <th>test ID</th>
+                <th>Test Adı</th>
+                <th>Kullanıcı Adı</th>
+                <th>Doğru Cevap sayısı</th>
+                <th>Yanlış Cevap Sayısı</th>
+                <th>Teste içersindeki soru sayısı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.TestId</th>
+                    <th>@item.TestName</th>
+                    <th>@item.UserName</th>
+                    <th>@item.NumberOfCorrect</th>
+                    <th>@item.NumberOfWrong</th>
+                    <th>@item.numberOfUserAnswer</th>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

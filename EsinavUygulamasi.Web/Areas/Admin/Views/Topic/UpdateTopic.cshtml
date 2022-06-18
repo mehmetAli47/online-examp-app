@@ -1,0 +1,30 @@
+﻿@model EsinavUygulamasi.DAL.Models.Database.Topic
+@{
+    ViewData["Title"] = "UpdateTopic";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+<div class="container ">
+    <div class="">
+        <form asp-action="UpdateTopic" method="post">
+             <div class="form-group">
+                    <label asp-for="Name" class="control-label">Konu Başlığı</label>
+                    <input id="Name" name="Name" class="form-control" value="@Model.Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreateTime" class="control-label">Kayıt Oluşturma Tarihi</label>
+                    <input id="createtime" name="createtime" class="form-control" type="datetime-local" value='@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")?.Replace(' ','T')' />
+                    <span asp-validation-for="CreateTime" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Güncelle" class="btn btn-primary" />
+                </div>
+                <div class="text-center">
+                    <a href="/Admin/Topic/Index">Back to List</a>
+                </div>
+        </form>
+    </div>
+</div>
+

@@ -886,11 +886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.Repository\\EsinavUygulamasi.Repository.csproj",
+      "projectUniqueName": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.Repository\\EsinavUygulamasi.Repository.csproj",
       "projectName": "EsinavUygulamasi.Repository",
-      "projectPath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.Repository\\EsinavUygulamasi.Repository.csproj",
+      "projectPath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.Repository\\EsinavUygulamasi.Repository.csproj",
       "packagesPath": "C:\\Users\\mehme\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.Repository\\obj\\",
+      "outputPath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.Repository\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -910,8 +910,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj": {
-              "projectPath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj"
+            "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj": {
+              "projectPath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj"
             }
           }
         }

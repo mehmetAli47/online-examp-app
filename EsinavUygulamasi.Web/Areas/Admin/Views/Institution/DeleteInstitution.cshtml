@@ -1,0 +1,69 @@
+﻿@model List<EsinavUygulamasi.Models.Response.InstitutionVM>
+
+@{
+    ViewData["Title"] = "DeleteInstitution";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+<div class="container p-5">
+    @foreach (var item in Model)
+    {
+        <dl class="row borde">
+            <dt class="col-2">
+                <label>Kurum Id:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Id</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kurum Adı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Name</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kurum Adresi:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Address</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kurum Telefonu:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Phone</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kurum Açıklaması:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.InstitutionInformation</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kayıt Oluşturma Zamanı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.CreateTime</label>
+            </dd>
+            <dt class="col-2">
+                <label>En son Güncelleme zamanı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.LastUpdateTime</label>
+            </dd>
+        </dl>
+    }
+
+    <form asp-action="DeleteInstitution" method="post">
+        <input type="hidden"/>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href="/Admin/Institution/Index">Back to List</a>
+    </form>
+</div>

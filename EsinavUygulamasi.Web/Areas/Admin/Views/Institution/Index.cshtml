@@ -1,0 +1,101 @@
+﻿@model IEnumerable<EsinavUygulamasi.DAL.Models.Database.Institution>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<head>
+
+</head>
+@*<body class="body">
+    <sectin class="main-content-w3layouts-agileits">
+    <div class="container" style="max-width:fit-content" >
+
+
+    <div class="inner-sec">
+    <div class="left-blog-info-w3layouts-agileits text-left ">
+    <div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-lg-4 card">
+    <a href="single.html">
+    <img src="~/web/images/1.jpg" class="card-img-top img-fluid" alt="">
+    </a>
+    <div class="card-body">
+    <ul class="blog-icons my-4">
+    <li>
+    <a href="#">
+    <i class="far fa-calendar-alt"></i> @(((DateTime)item.CreateTime).ToString("dd-MMM-yyyy"))
+    </a>
+    </li>
+    <li class="mx-2">
+    <a href="#">
+    <i class="far fa-comment"></i> 0
+    </a>
+    </li>
+    <li>
+    <a href="/Home/InstitutionExams/@item.Id?institutionName=12312" data - id="@item.Id">
+    <i class="fas fa-eye"></i> @item.Name
+    </a>
+    </li>
+
+    </ul>
+    <h5 class="card-title">
+    <a href="/Home/InstitutionExams/@item.Id" data - id="@item.Id">@item.Name</a>
+    </h5>
+    <p class="card-text mb-3">@(item.InstitutionInformation.Length>130?item.InstitutionInformation.Substring(0,130):item.InstitutionInformation)...</p>
+    </div>
+    </div>
+    <br />
+    <br />
+    }
+    </div>
+    <!--//left-->
+    </div>
+    </div>
+    </div>
+    </sectin>
+    </body>*@
+<div class="container" style="max-width:1600px; text-align:left;font-size:12px;">
+    <h3 class="tittle m-4">Kurumlar</h3>
+    <div class="row" style="text-align:end">
+        <div class="col"></div>
+        <div class="col">
+            <a href="/Admin/Institution/InstitutionAdd" class="btn btn-primary">Yeni kurum Ekle</a>
+        </div>
+    </div>
+    <table class="table table-striped m-sm-1">
+        <thead class="thead-dark">
+            <tr>
+                <th>Kurum Adı</th>
+                <th>Kurum Telefonu</th>
+                <th>Kurum Adresi</th>
+                <th>Kurum Açıklaması</th>
+                <th>kayıt oluşturma zamanı</th>
+                <th>kayıt Güncelleme zamanı</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Name</th>
+                    <th>@item.Phone</th>
+                    <th>@item.Address</th>
+                    <th>@item.InstitutionInformation</th>
+                    <th>@item.CreateTime</th>
+                    <th>@item.LastUpdateTime</th>
+                    <td><a class="btn btn-success btnUpdate" href="/Admin/Institution/UpdateInstitution/@item.Id" data - id="@item.Id">Güncelle </a></td>
+                    <td><a class="btn btn-danger btnDlete" href="/Admin/Institution/DeleteInstitution/@item.Id" data - id="@item.Id"> Sil </a></td>
+
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>

@@ -1,0 +1,58 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.UserTestInformationView>
+
+@{
+    ViewData["Title"] = "UserTestInformation";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<nav class="navbar nav-tabs p-3" style="margin-left:100px;margin-right:100px;">
+    <div class="" style="text-align:center;width:100%">
+        <h1>Kullanıcı Test Bilgileri</h1>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Kullanıcı Adı")
+                </th>
+                <th>
+                    @Html.DisplayName("Test Adı")
+                </th>
+                <th>
+                    @Html.DisplayName("Soru")
+                </th>
+                <th>
+                    @Html.DisplayName("Kullanıcı Cevabı")
+                </th>
+                <th>
+                    @Html.DisplayName("Cevap Durumu")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td >
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.TestName
+                    </td>
+                    <td>
+                        @item.QuestionName
+                    </td>
+                    <td>
+                        @item.QuestionAnswer
+                    </td>
+                    <td >
+                         <div style="@(item.Status==true?"background-color:green":"background-color:red");height: 30px;text-align: center;font-size: 20px;color: black;border-radius: 20px;">
+                              @(item.Status?"Doğru":"Yanlış")
+                         </div>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</nav>

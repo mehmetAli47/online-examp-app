@@ -868,11 +868,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
       "projectName": "EsinavUygulamasi.DAL",
-      "projectPath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
+      "projectPath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\EsinavUygulamasi.DAL.csproj",
       "packagesPath": "C:\\Users\\mehme\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mehme\\Documents\\projects\\EsinavUygulamasi.DAL\\obj\\",
+      "outputPath": "C:\\Users\\mehme\\Documents\\projects\\online-examp-app\\EsinavUygulamasi.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

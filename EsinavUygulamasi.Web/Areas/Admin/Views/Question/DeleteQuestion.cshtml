@@ -1,0 +1,82 @@
+﻿@model List<EsinavUygulamasi.Models.Response.QuestionVM>
+
+@{
+    ViewData["Title"] = "DeleteQuestion";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<div class="container p-5">
+    @foreach (var item in Model)
+    {
+        <dl class="row borde">
+            <dt class="col-2">
+                <label>Soru Id:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Id</label>
+            </dd>
+            <dt class="col-2">
+                <label>Soru İçeriği:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Name</label>
+            </dd>
+            <dt class="col-2">
+                <label>A Şıkkı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Answer1</label>
+            </dd>
+            <dt class="col-2">
+                <label>B Şıkkı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Answer2</label>
+            </dd>
+            <dt class="col-2">
+                <label>C Şıkkı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Answer3</label>
+            </dd>
+            <dt class="col-2">
+                <label>D Şıkkı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.Answer4</label>
+            </dd>
+            <dt class="col-2">
+                <label>Doğru Cevap:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.CorrectAnswer</label>
+            </dd>
+            <dt class="col-2">
+                <label>Kayıt Oluşturma Zamanı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.CreateTime</label>
+            </dd>
+            <dt class="col-2">
+                <label>En son Güncelleme zamanı:</label>
+            </dt>
+            <dd class="col-10">
+
+                <label>@item.LastUpdateTime</label>
+            </dd>
+        </dl>
+    }
+    
+    <form asp-action="DeleteQuestion" method="post">
+        <input type="hidden"  value="@ViewBag.TopicId"/>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

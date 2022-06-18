@@ -1,0 +1,76 @@
+﻿@model List<EsinavUygulamasi.Models.Response.QuestionVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div>
+            <div class="text-center"> <h1>@ViewBag.TopicName Soru  Listesi</h1>  </div>
+            <div class="row p-3" style="text-align:end">
+                <div class="col"></div>
+                <div class="col">
+                    <a href="/Admin/Question/AddQuestion/@ViewBag.TopicId" class="btn btn-primary">Yeni Soru Ekle</a>
+                    <input name="TopicId" id="TopicId" type="hidden" value="@ViewBag.TopicId" />
+                </div>
+            </div>
+            <table id="example" class="table table-striped  table-hover" width="100%" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th> id </th>
+                        <th> Soru </th>
+                        <th>A şıkkı </th>
+                        <th>B şıkkı </th>
+                        <th>C şıkkı</th>
+                        <th>D şıkkı</th>
+                        <th>Doğru cevap </th>
+                        <th>Kayıt oluşturma zamanı </th>
+                        <th>Kayıt Güncelleme zamanı </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td> @item.Id </td>
+                            <td> @item.Name</td>
+                            <td> @item.Answer1 </td>
+                            <td> @item.Answer2 </td>
+                            <td> @item.Answer3 </td>
+                            <td> @item.Answer4 </td>
+                            <td> @item.CorrectAnswer </td>
+                            <td> @item.CreateTime </td>
+                            <td> @item.LastUpdateTime</td>
+                            <td><a class="btn btn-success btnUpdate" href="/Admin/Question/UpdateQuestion/@item.Id" data - id="@item.Id">Güncelle </a></td>
+                            <td><a class="btn btn-danger btnDlete" href="/Admin/Question/DeleteQuestion/@item.Id" data - id="@item.Id"> Sil </a></td>
+                        </tr>
+
+                    }
+                </tbody>
+
+            </table>
+            <div class="text-center">
+                <a href="/Admin/Topic/Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,3 +10,15 @@ C:\Users\mehme\Documents\projects\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUy
 C:\Users\mehme\Documents\projects\EsinavUygulamasi.DAL\obj\Debug\net5.0\refint\EsinavUygulamasi.DAL.dll
 C:\Users\mehme\Documents\projects\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.pdb
 C:\Users\mehme\Documents\projects\EsinavUygulamasi.DAL\obj\Debug\net5.0\ref\EsinavUygulamasi.DAL.dll
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\bin\Debug\net5.0\EsinavUygulamasi.DAL.deps.json
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\bin\Debug\net5.0\EsinavUygulamasi.DAL.dll
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\bin\Debug\net5.0\EsinavUygulamasi.DAL.pdb
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.csproj.AssemblyReference.cache
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.AssemblyInfoInputs.cache
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.AssemblyInfo.cs
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.csproj.CoreCompileInputs.cache
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.dll
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\refint\EsinavUygulamasi.DAL.dll
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\EsinavUygulamasi.DAL.pdb
+C:\Users\mehme\Documents\projects\online-examp-app\EsinavUygulamasi.DAL\obj\Debug\net5.0\ref\EsinavUygulamasi.DAL.dll

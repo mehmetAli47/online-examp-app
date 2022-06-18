@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.questionName {
+    background-color: #e6ede594;
+    height: 100px;
+    max-width: 800px;
+}
+
+    .questionName .name {
+        border-radius: 10px;
+    }
+
+.gridHeader {
+    text-align: center;
+}
+
+.question {
+    margin-left:155px;
+}
+
+.questionAnswer {
+    background: cornsilk;
+    max-width: 800px;
+    height: max-content;
+    border-radius: 10px;
+}

@@ -1,0 +1,207 @@
+﻿@{
+    ViewData["Title"] = "GetTestContent";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .soru {
+        background-color: azure;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+
+    #btnRemove {
+        width: 100%;
+        margin-left: 12px;
+        border-radius: 10px;
+    }
+
+    #btnSbmit {
+        border-radius: 10px;
+    }
+
+    #Submit {
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <form class="GetTestContent" method="post">
+            <div class="form-group">
+                <label  class="control-label">Test Adı</label>
+                <input class="form-control" name="testName" id="testName" type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Test Başlama tarihi</label>
+                <input class="form-control" name="startTime" id="startTime" type="datetime-local" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Soru Kategorisi</label>
+                <select id="selectTopicListType" name="selectTopicListType" class="form-control custom-select" style="border-radius:5px;padding:2px;">
+                    <option selected value="">seçiniz</option>
+                    @foreach (SelectListItem topic in ViewBag.Topic)
+                    {
+                        <option value="@topic.Value">@topic.Text</option>
+                    }
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="row" style="margin-left:1px;">
+                <div class="col-10">
+                    <div class="form-group row">
+                        <label class="control-label">Sorular</label>
+                        <select id="selectQuestionListById" name="selectQuestionListById" class="form-control custom-select" style="border-radius:5px;padding:2px;">
+                            <option selected value="">seçiniz</option>
+                            @foreach (SelectListItem question in ViewBag.Question)
+                            {
+                                <option data-id="@question.Value" value="@question.Value">@question.Text</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input style=" width: 150px; " id="btnSbmit" type="button" value="Ekle" class="btn btn-primary" />
+                    <input style=" width: 150px; margin-top:20px; " id="Submit" type="button" value="gönder" class="btn btn-success" />
+                </div>
+            </div>
+            <div class="questionIdList">
+            </div>
+            <input name="ExamId" id="ExamId" type="hidden" value="@ViewBag.ExamId" />
+        </form>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+          $("#selectTopicListType").change(function(){
+              var selected=$("#selectTopicListType").val();
+              GetQuestionListByTopicId(selected);
+
+          });
+          $(".questionIdList").on("click","#btnRemove",function(){
+             var parent=$(this).parents(".soru");
+             $(parent).remove();
+          });
+          $("#Submit").click(function(){
+              var result=$(".questionIdList .soru");
+              var testName=$("#testName").val();
+              var startTime=$("#startTime").val();
+              var testObj=new Object();
+              const questionIdList=[];
+              for(var i=0;i<result.length;i++){
+                      questionIdList.push(parseInt($(result).eq(i).attr("data-id")));
+              }
+              testObj.QuestionIdList=questionIdList;
+              testObj.Name=testName;
+              testObj.StartTime=startTime;
+              testObj.ExamId=$("#ExamId").val();
+              $.ajax({
+                  url:'/Admin/Test/SaveTest',
+                  data:JSON.stringify(testObj),
+                  contentType: "application/json; charset=utf-8",
+                  type:'post',
+                  success:function(testObj){
+                      window.location.href="/Admin/Test/Index";
+                  }
+              });
+
+          });
+
+          $("#btnSbmit").click(function(){
+              var selectedQuestion=$('#selectQuestionListById').find(":selected");
+              var text=$(selectedQuestion).text();
+              var qId=$(selectedQuestion).val();
+                    var answer1=$(selectedQuestion).attr("data-answer1");
+                    var answer2=$(selectedQuestion).attr("data-answer2");
+                    var answer3=$(selectedQuestion).attr("data-answer3");
+                    var answer4=$(selectedQuestion).attr("data-answer4");
+                    var questiontext=$(".questionIdList .soru");
+                    if(questiontext!=undefined){
+
+                        var found=false;
+                        for(var i=0;i<questiontext.length;i++){
+                            if($(questiontext).eq(i).attr("data-id")==qId){
+                                found=true;
+                                 break;
+                            }
+                        }
+                        if(!found){
+                            $('.questionIdList').append(
+                           '<div class="soru row"  data-id="'+qId+'">'
+                                +'<div class="col-10">'
+                                 +text+'</br></br>'
+                                 +'<div>A-)'+answer1+'</div>'
+                                    +'<div>B-)'+answer2+'</div>'
+                                    +'<div>C-)'+answer3+'</div>'
+                                    +'<div>D-)'+answer4+'</div>'
+                                +'</div>'
+                                +'<div class="col-2">'
+                                  +'<button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i></button>'
+                                +'</div>'
+                            +'</div>');
+                        }
+                        else
+                            alert("bu soru zaten ekli");
+                    }else{
+                    $('.questionIdList').append(
+                           '<div class="soru" data-id="'+qId+'">'
+                               +'<button class="btn btn-danger" type="button" id="btnRemove"><i class="fa fa-trash"></i></button>'
+                                +'<div>A-)'+answer1+'</div>'
+                                +'<div>B-)'+answer2+'</div>'
+                                +'<div>C-)'+answer3+'</div>'
+                                +'<div>D-)'+answer4+'</div>'
+                            +'</div>');
+                       }
+          });
+           console.log("liste geldi");
+
+
+    });
+    function GetQuestion(topicListType){
+        $("#questionList tbody").html("");
+        $.ajax({
+            url:'/Admin/Test/GetQuestion',
+            data:{topicListTypeId:topicListType},
+            type:'post',
+            success:function(gridView){
+                if(gridView== undefined)
+                    return;
+
+            for(var i=0; i < gridView.length; i++){
+                $("#questionList tbody").html(
+                  $("#questionList tbody").html()
+                    + '<tr>'
+                        + '<td>' + gridView[i].Id + '</td>'
+                        + '<td>' + gridView[i].Name + '</td>'
+                        + '<td>' + gridView[i].Answer1 + '</td>'
+                        + '<td>' + gridView[i].Answer2 + '</td>'
+                        + '<td>' + gridView[i].Answer3 + '</td>'
+                        + '<td>' + gridView[i].Answer4 + '</td>'
+
+                + '</tr>');
+                }
+
+            }
+            ,error:function(){
+
+            }
+        });
+    }
+    function GetQuestionListByTopicId(topicListTypeId){
+        $.ajax({
+                url:'/Admin/Test/GetQuestion',
+                data:{topicListTypeId:topicListTypeId},
+                type:'post',
+                success:function(data){
+                    $('#selectQuestionListById').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#selectQuestionListById').append("<option value='" + data[i].Id + "' data-answer1='"+data[i].Answer1+"' data-answer2='"+data[i].Answer2+"' data-answer3='"+data[i].Answer3+"' data-answer4='"+data[i].Answer4+"'>" + data[i].Name + "</option>");
+                    }
+                }
+            });
+    }
+</script>

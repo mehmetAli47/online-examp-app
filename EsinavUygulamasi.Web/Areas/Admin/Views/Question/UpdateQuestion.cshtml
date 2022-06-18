@@ -1,0 +1,56 @@
+﻿@model EsinavUygulamasi.Models.Response.QuestionVM
+@{
+    ViewData["Title"] = "UpdateQuestion";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<div class="container ">
+    <div class="">
+        <form asp-action="UpdateQuestion" method="post">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Soru İçeriği</label>
+                <input id="Name" name="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">A şıkkı</label>
+                <input id="Answer1" name="Answer1" class="form-control" value="@Model.Answer1" />
+                <span asp-validation-for="Answer1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">B şıkkı</label>
+                <input id="Answer2" name="Answer2" class="form-control" value="@Model.Answer2" />
+                <span asp-validation-for="Answer2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">C şıkkı</label>
+                <input id="Answer3" name="Answer3" class="form-control" value="@Model.Answer3" />
+                <span asp-validation-for="Answer3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Answer4" class="control-label">D şıkkı</label>
+                <input id="Answer4" name="Answer4" class="form-control" value="@Model.Answer4" />
+                <span asp-validation-for="Answer4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectAnswer" class="control-label">Doğru cevap</label>
+                <input id="CorrectAnswer" name="CorrectAnswer" class="form-control" value="@Model.CorrectAnswer" />
+                <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateTime" class="control-label">Kayıt Oluşturma Tarihi</label>
+                <input id="createtime" name="createtime" class="form-control" type="datetime-local" value='@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")?.Replace(' ','T')' />
+                <span asp-validation-for="CreateTime" class="text-danger"></span>
+            </div>
+            <input name="TopicId" id="TopicId" type="hidden" value="@ViewBag.QuestionTopicId" />
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+            <div class="text-center">
+                <a href="/Admin/Topic/Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

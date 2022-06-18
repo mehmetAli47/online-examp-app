@@ -1,0 +1,32 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.Topic>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class= "container">
+            <br/>
+            
+            <div>
+                <div class="gridHeader " style="text-align:center"><h3> Konu Listesi</h3> </div>
+                <table id="example" class="table table-striped table-bordered table-hover" >
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th> id </th>
+                            <th> Name </th>                                                                                                       
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var topic in Model)
+                        {
+                            <tr>
+                                <th> @topic.Id </th>
+                                <td><a href="/Topic/TopicQuestion/@topic.Id" data-id="@topic.Id"style="color:black;font-size:20px;" >@topic.Name</a> </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+              
+            </div>
+    </div>

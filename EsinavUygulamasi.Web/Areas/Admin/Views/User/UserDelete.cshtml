@@ -1,0 +1,51 @@
+﻿@model List<EsinavUygulamasi.DAL.Models.Database.User>
+
+@{
+    ViewData["Title"] = "UserDelete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+<div class="container p-5">
+    @foreach (var item in Model)
+    {
+        <dl class="row">
+            <dt class="col-sm-2">
+               <label>Kullanıcı Id:</label>
+               <label>@item.Id</label>
+            </dt>
+            <dd class="col-sm-10">
+                <label>Adı:</label>
+               <label>@item.Name</label>
+            </dd>
+            <dt class="col-sm-2">
+                <label>Soyadı:</label>
+               <label>@item.Surname</label>
+            </dt>
+            <dd class="col-sm-10">
+                <label>Kullanıcı Adı:</label>
+               <label>@item.Username</label>
+            </dd>
+            <dt class="col-sm-2">
+                 <label>Şifre:</label>
+               <label>@item.Password</label>
+            </dt>
+            <dd class="col-sm-10">
+                 <label>Kullanıcı email:</label>
+               <label>@item.Email</label>
+            </dd>
+            <dt class="col-sm-2">
+                <label>Kayıt Oluşturma Zamanı:</label>
+               <label>@item.CreateTime</label>
+            </dt>
+            <dd class="col-sm-10">
+                 <label>En son Güncelleme zamanı:</label>
+               <label>@item.LastUpdateTime</label>
+            </dd>
+        </dl>
+    }
+
+    <form asp-action="/User/UserDelete" method="post">
+        <input type="hidden"  />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href="/Admin/User/Index">Back to List</a>
+    </form>
+</div>

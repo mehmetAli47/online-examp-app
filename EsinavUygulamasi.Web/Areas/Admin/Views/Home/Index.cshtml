@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayouth.cshtml";
+}
+
+
+<div class="container p-5">
+    <button type="button" id="btnLoad" class="btn-primary btn-success"> verileri yükle</button>
+    <hr />
+    <div id="loading" class="alert alert-warning" style="display:none;">
+        yükleniyor...
+    </div>
+    <ul id="list" class="list-group">
+    </ul>
+
+</div>
+
+<script>
+    $(function(){
+        $("#btnLoad").click(function(){
+            $("#loading").show(300);
+            $.get();
+            $("#loading").hide(300);
+        });
+    });
+</script>
